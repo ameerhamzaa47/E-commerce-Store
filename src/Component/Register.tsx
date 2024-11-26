@@ -8,10 +8,10 @@ const Register: React.FC = () => {
     password: "",
   });
 
-    useEffect(() => {
-  if(localStorage.getItem('user-info')){
-    Navigate('/')
-  }
+  useEffect(() => {
+    if (localStorage.getItem('user-info')) {
+      Navigate('/')
+    }
   }, [])
 
   const [error, setError] = useState("");
@@ -27,7 +27,7 @@ const Register: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Simple validation
     if (!formData.name || !formData.email || !formData.password) {
       setError("Please fill in all fields.");
@@ -38,17 +38,17 @@ const Register: React.FC = () => {
     setError("");
   };
 
-  function sendData(){
-    localStorage.setItem('user-info',JSON.stringify(formData))
+  function sendData() {
+    localStorage.setItem('user-info', JSON.stringify(formData))
     Navigate('/')
   }
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-center">Register</h2>
-      
+
       {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}
-      
+
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-600">Name</label>
@@ -66,7 +66,7 @@ const Register: React.FC = () => {
         </div>
 
         <button type="submit" className="w-full p-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-        onClick={sendData} >
+          onClick={sendData} >
           Register
         </button>
       </form>

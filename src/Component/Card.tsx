@@ -6,10 +6,10 @@ import ProductCardProps from "../Type/Interface";
 
 const Card: React.FC<ProductCardProps> = () => {
     const dispatch = useDispatch<AppDispatch>();
-    
+
     const [selectedCategory, setSelectedCategory] = useState("All");
 
-    const {filteredProducts, loading, error } = useSelector(
+    const { filteredProducts, loading, error } = useSelector(
         (state: RootState) => state.products
     );
 
@@ -36,7 +36,7 @@ const Card: React.FC<ProductCardProps> = () => {
 
     return (
         <>
-            <section className="flex justify-between px-5 md:px-16 py-5 pt-5">
+            <section className="flex justify-between px-2 md:px-16 py-5 pt-5">
                 <h1 className="text-xl font-bold">NEW PRODUCTS</h1>
                 {/* Filter Category */}
                 <ul className="flex gap-6 font-semibold text-gray-500">
@@ -57,7 +57,7 @@ const Card: React.FC<ProductCardProps> = () => {
                             onClick={() => handleCategoryChange("Furniture")}>Furniture</button>
                     </li>
                     <li>
-                        <button className={`active:text-red-500 ${selectedCategory === "Groceries" ? "text-red-500" : ""}`}
+                        <button className={`active:text-red-500 mr-3 ${selectedCategory === "Groceries" ? "text-red-500" : ""}`}
                             onClick={() => handleCategoryChange("Groceries")}>Groceries</button>
                     </li>
                 </ul>
@@ -67,7 +67,7 @@ const Card: React.FC<ProductCardProps> = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {/* Card */}
                     {filteredProducts.map((item) => (
-                        <div key={item.id} className="bg-white rounded-lg shadow-lg hover:border-red-500 cursor-pointer relative border border-gray-300 transition-all duration-300 max-w-sm">
+                        <div key={item.id} className="bg-white w-96 mx-auto md:w-56 lg:w-64 lg:mx-auto md:mx-auto rounded-lg shadow-lg hover:border-red-500 cursor-pointer relative border border-gray-300 transition-all duration-300 max-w-sm">
 
                             <img src={item.thumbnail} alt="" className="rounded-t-lg w-full h-48 object-cover p-4" />
 

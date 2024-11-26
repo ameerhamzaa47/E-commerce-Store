@@ -37,13 +37,13 @@ function App() {
   return (
     <div className="min-h-screen">
       <BrowserRouter>
-      <ErrorBoundary>
-      <Navbar />
-        <Routes>
-            <Route path='/' element={<Protected cmp={Card}/>} />
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>} />
-        </Routes>
+        <ErrorBoundary>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<Protected cmp={Card} />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>
         </ErrorBoundary>
       </BrowserRouter>
     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -7,10 +7,10 @@ const Login = () => {
   const [error, setError] = useState<string>("");
   const Navigate = useNavigate()
 
-    useEffect(() => {
-  if(localStorage.getItem('user-info')){
-    Navigate('/')
-  }
+  useEffect(() => {
+    if (localStorage.getItem('user-info')) {
+      Navigate('/')
+    }
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -34,9 +34,9 @@ const Login = () => {
     return regex.test(email);
   };
 
-  function sendData(){
-    let Item={email,password}
-    localStorage.setItem('user-info',JSON.stringify(Item))
+  function sendData() {
+    let Item = { email, password }
+    localStorage.setItem('user-info', JSON.stringify(Item))
     Navigate('/')
   }
 
@@ -67,7 +67,7 @@ const Login = () => {
 
           {/* Submit Button */}
           <button type="submit"
-          onClick={sendData}
+            onClick={sendData}
             className="w-full py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
             Sign In
           </button>

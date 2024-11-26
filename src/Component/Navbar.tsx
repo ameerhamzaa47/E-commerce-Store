@@ -42,8 +42,11 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <div className="navbar bg-black sticky top-0 z-10">
-        <Link to="/" className=" text-xl font-semibold text-white">ShopWise</Link>
+      <div className="navbar bg-black w-[121%] md:w-full sticky top-0 z-10">
+        <div className="flex items-center  ">
+          <Link to="/" className=" text-xl font-semibold text-white">ShopWise</Link>
+          <span className='font-bold text-red-500 scale-150 px-1'>.</span>
+        </div>
         {
           localStorage.getItem('user-info') ?
             <>
@@ -74,10 +77,7 @@ const Navbar: FC = () => {
                   </ul>
                 </div>
                 {/* Title */}
-                <div className="flex items-center  ">
 
-                  <span className='font-bold text-red-500 scale-150 px-1'>.</span>
-                </div>
               </div>
               <div className="navbar-center hidden md:flex justify-center items-center ">
                 <div className="form-control">
@@ -146,10 +146,10 @@ const Navbar: FC = () => {
 
                             </div>
                             <div className='bg-gray-100'>
-                            <p className='text-center flex justify-between m-4 '>
-                              <strong>Total:</strong>
-                              <p className='font-semibold text-red-600'> ₹{price.toFixed(2)}</p>
-                            </p>
+                              <p className='text-center flex justify-between m-4 '>
+                                <strong>Total:</strong>
+                                <p className='font-semibold text-red-600'> ₹{price.toFixed(2)}</p>
+                              </p>
                             </div>
                           </>
                           :

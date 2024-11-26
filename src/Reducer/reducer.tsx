@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import {ProductState} from "../Type/Reducer Interface";
+import { ProductState } from "../Type/Reducer Interface";
 
 
 // Initial state
