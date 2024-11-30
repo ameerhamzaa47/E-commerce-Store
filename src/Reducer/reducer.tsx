@@ -1,6 +1,6 @@
+
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { ProductState } from "../Type/Reducer Interface";
-
 
 // Initial state
 const initialState: ProductState = {
@@ -48,10 +48,21 @@ const productSlice = createSlice({
         state.filteredProducts = state.products;
       } else {
         state.filteredProducts = state.products.filter(
-          (product) => product.category.toLowerCase() === category.toLowerCase() // Case-insensitive matching
+          (product) => product.category.toLowerCase() === category.toLowerCase()
         );
       }
     },
+    filterByName: (state, action: PayloadAction<string>) => {
+      const query = action.payload.toLowerCase();
+      if (query === "") {
+        state.filteredProducts = state.products;
+      } else {
+        state.filteredProducts = state.products.filter((product) =>
+          product.title.toLowerCase().includes(query)
+        );
+      }
+    },
+    
   },
   extraReducers: (builder) => {
     builder
@@ -61,7 +72,7 @@ const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
-        state.filteredProducts = action.payload;
+        state.filteredProducts = action.payload; // Initialize filteredProducts with all products
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
@@ -70,6 +81,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { addtocart, deletecart, filterByCategory } = productSlice.actions;
+export const { addtocart, deletecart, filterByCategory, filterByName } = productSlice.actions;
 
 export default productSlice.reducer;

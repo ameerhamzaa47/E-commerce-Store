@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { NavLink, Table } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { deletecart } from '../Reducer/reducer'
+import { deletecart, filterByName } from '../Reducer/reducer'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar: FC = () => {
@@ -13,11 +13,17 @@ const Navbar: FC = () => {
 
 
   const [price, setPrice] = useState<number>(0)
+  const [searchQuery, setSearchQuery] = useState('')
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(e.target.value)
+    dispatch(filterByName(query))
+  }
 
 
   const total = () => {
-    let price = 0
+    let price = 0;
     data.map((ele: any) =>
       price = ele.price + price
     )
@@ -71,7 +77,7 @@ const Navbar: FC = () => {
                     tabIndex={0}
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-96 p-2 shadow">
                     <div className="form-control ">
-                      <input type="text" placeholder="Search Here..." className="input input-bordered h-9 w-12/12 md:w-auto" />
+                      <input type="text" placeholder="Search Here..." value={searchQuery} onChange={handleSearchChange} className="input input-bordered h-9 w-12/12 md:w-auto" />
                     </div>
                     <button className="text-white mt-2 bg-red-500 rounded-r-sm px-3 font-semibold p-1.5"><i className="fa-solid fa-magnifying-glass"></i></button>
                   </ul>
@@ -81,7 +87,7 @@ const Navbar: FC = () => {
               </div>
               <div className="navbar-center hidden md:flex justify-center items-center ">
                 <div className="form-control">
-                  <input type="text" placeholder="Search Here..." className="input rounded-l-sm rounded-r-none input-bordered h-9 w-24 md:w-80" />
+                  <input type="text" placeholder="Search Here..." value={searchQuery} onChange={handleSearchChange} className="input rounded-l-sm rounded-r-none input-bordered h-9 w-24 md:w-80" />
                 </div>
                 <button className="text-white bg-red-500 rounded-r-sm px-3 font-semibold p-1.5"><i className="fa-solid fa-magnifying-glass"></i></button>
               </div>
